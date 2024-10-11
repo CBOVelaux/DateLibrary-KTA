@@ -111,7 +111,7 @@ namespace DateLibrary.DateHelpers
             return currentDate;
         }
 
-          }
+         
         /// <summary>
         /// Ajoute un nombre de jour ouvrés à la date une date donnée
         /// </summary>
