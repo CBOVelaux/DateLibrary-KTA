@@ -16,5 +16,19 @@ namespace DateLibrary.Tests
 
             Assert.Equal("07/01/2025",resultat2.Date.ToShortDateString());
         }
+
+        [Fact]
+        public void DateCalculNegativeJourOuvree_MustReturnDate()
+        {
+            var jourOuvrableCalculator = new JourOuvrableCalculator();
+
+            var resultat2 = jourOuvrableCalculator.DateCalculNegativeJourOuvree(
+                nombreDeJour: 5,
+                country: Countries.France
+                );
+
+            Assert.Equal("07/01/2025", resultat2.Date.ToShortDateString());
+        }
+
     }
 }
