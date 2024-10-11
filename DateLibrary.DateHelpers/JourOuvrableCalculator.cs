@@ -111,6 +111,40 @@ namespace DateLibrary.DateHelpers
             return currentDate;
         }
 
+          }
+        /// <summary>
+        /// Ajoute un nombre de jour ouvrés à la date une date donnée
+        /// </summary>
+        /// <param name="country"></param>
+        /// <param name="nombreDeJour"></param>
+        /// <param name="dateStart"></param>
+        /// <returns>Date</returns>
+        public DateTime DateCalculNegativeJourOuvreeFromDate(Countries country, int nombreDeJour, DateTime dateStart)
+        {
+            DateTime currentDate = dateStart;
+            IList<DateTime> holidaysDates = jourOuvrableMethods.GetHolidaysDates(country, currentDate);
+
+            // Si je veux soustraire des jours je peux passer une valeur négative dans Add days
+
+            while (nombreDeJour > 0)
+            {
+                if (jourOuvrableMethods.IsNotDayOff(holidaysDates, currentDate))
+                {
+                    nombreDeJour--;
+                }
+                // Si je veux soustraire des jours je peux passer une valeur négative
+                currentDate = currentDate.AddDays(-1);
+                
+                //Si je suis le premier janvier alors je dois charger les jours fériés de l'année précédente
+                if (currentDate.Day == _premierJourAnnee && currentDate.Month == _premierMoisAnnee)
+                {
+                    var currentAnnee = currentDate.AddYears(-1);
+                    holidaysDates = jourOuvrableMethods.GetHolidaysDates(country, currentAnnee);
+                }
+            }
+
+            return currentDate;
+        }
 
 
 
