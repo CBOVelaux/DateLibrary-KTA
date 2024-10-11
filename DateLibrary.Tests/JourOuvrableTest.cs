@@ -4,6 +4,8 @@ namespace DateLibrary.Tests
 {
     public class JourOuvrableTest
     {
+        private const string _expectedDate = "07/01/2025";
+
         [Fact]
         public void DateCalculPositiveJourOuvreeFromDate_MustReturn07012025()
         {
@@ -27,7 +29,7 @@ namespace DateLibrary.Tests
                 country: Countries.France
                 );
 
-            Assert.Equal("07/01/2025", resultat2.Date.ToShortDateString());
+            Assert.Equal(_expectedDate, resultat2.Date.ToShortDateString());
         }
 
     }
