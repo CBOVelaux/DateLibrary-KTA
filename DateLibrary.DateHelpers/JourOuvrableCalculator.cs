@@ -1,8 +1,5 @@
-﻿using PublicHoliday;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-
 
 namespace DateLibrary.DateHelpers
 {
@@ -81,8 +78,13 @@ namespace DateLibrary.DateHelpers
 
             return currentDate;
         }
-
-        //Troisième methode : Ajoute un nombre de jour ouvrés à la date une date donnée
+        /// <summary>
+        /// Ajoute un nombre de jour ouvrés à la date une date donnée
+        /// </summary>
+        /// <param name="country"></param>
+        /// <param name="nombreDeJour"></param>
+        /// <param name="dateStart"></param>
+        /// <returns>Date</returns>
         public DateTime DateCalculPositiveJourOuvreeFromDate(Countries country, int nombreDeJour, DateTime dateStart)
         {
             DateTime currentDate = dateStart;
