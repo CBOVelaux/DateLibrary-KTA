@@ -46,8 +46,9 @@ namespace DateLibrary.DateHelpers
                     var currentAnnee = currentDate.AddYears(-1);
                     holidaysDates = jourOuvrableMethods.GetHolidaysDates(country, currentAnnee);
                 }
-
             }
+            //Si ma date est un jour off alors je prend le jour ouvré qui précède (méthode GetPreviousDayIfCurrentDateIsDateOff)
+            currentDate = jourOuvrableMethods.GetPreviousDayIfCurrentDateIsDateOff(holidaysDates, currentDate);
             return currentDate;
         }
         /// <summary>
@@ -75,7 +76,8 @@ namespace DateLibrary.DateHelpers
                     holidaysDates = jourOuvrableMethods.GetHolidaysDates(country, currentAnnee);
                 }
             }
-
+            //Si ma date est un jour off alors je prend le jour ouvré qui précède (méthode GetPreviousDayIfCurrentDateIsDateOff)
+            currentDate = jourOuvrableMethods.GetNextDayIfCurrentDateIsDateOff(holidaysDates, currentDate);
             return currentDate;
         }
         /// <summary>
@@ -107,7 +109,8 @@ namespace DateLibrary.DateHelpers
                     holidaysDates = jourOuvrableMethods.GetHolidaysDates(country, currentAnnee);
                 }
             }
-
+            //Si ma date est un jour off alors je prend le jour ouvré qui suit
+            currentDate = jourOuvrableMethods.GetNextDayIfCurrentDateIsDateOff(holidaysDates, currentDate);
             return currentDate;
         }
 
@@ -142,15 +145,9 @@ namespace DateLibrary.DateHelpers
                     holidaysDates = jourOuvrableMethods.GetHolidaysDates(country, currentAnnee);
                 }
             }
-
+            //Si ma date est un jour off alors je prend le jour ouvré qui précède (méthode GetPreviousDayIfCurrentDateIsDateOff)
+            currentDate = jourOuvrableMethods.GetPreviousDayIfCurrentDateIsDateOff(holidaysDates, currentDate);
             return currentDate;
         }
-
-
-
-
-
     }
-
-
 }

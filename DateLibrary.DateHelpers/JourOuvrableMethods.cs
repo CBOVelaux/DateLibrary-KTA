@@ -19,14 +19,55 @@ namespace DateLibrary.DateHelpers
                                 && !IsWeekend(currentDate);
         }
 
+        /// <summary>
+        /// Vérifie si le jour passé un weekend
+        /// </summary>
+        /// <param name="currentDate"></param>
+        /// <returns>bool</returns>
         public  bool IsWeekend(DateTime currentDate)
         {
             return currentDate.DayOfWeek == DayOfWeek.Sunday || currentDate.DayOfWeek == DayOfWeek.Saturday;
         }
 
+        /// <summary>
+        /// Vérifie si le jour passé est un jour de vacances
+        /// </summary>
+        /// <param name="franceHolidays"></param>
+        /// <param name="currentDate"></param>
+        /// <returns></returns>
         public  bool IsHoliday(IList<DateTime> franceHolidays, DateTime currentDate)
         {
             return franceHolidays.Any(day => day == currentDate);
+        }
+
+        /// <summary>
+        /// Vérifie si le jour retournée est ouvré, si non prends le jour qui précède
+        /// </summary>
+        /// <param name="holidaysDates"></param>
+        /// <param name="currentDate"></param>
+        /// <returns>Date</returns>
+        public DateTime GetPreviousDayIfCurrentDateIsDateOff(IList<DateTime> holidaysDates, DateTime currentDate)
+        {
+            while (!IsNotDayOff(holidaysDates, currentDate))
+            {
+                currentDate = currentDate.AddDays(-1);
+            }
+            return currentDate;
+        }
+
+        /// <summary>
+        /// Vérifie si le jour retournée est ouvré, si non prends le jour qui suit
+        /// </summary>
+        /// <param name="holidaysDates"></param>
+        /// <param name="currentDate"></param>
+        /// <returns>Date</returns>
+        public DateTime GetNextDayIfCurrentDateIsDateOff(IList<DateTime> holidaysDates, DateTime currentDate)
+        {
+            while (!IsNotDayOff(holidaysDates, currentDate))
+            {
+                currentDate = currentDate.AddDays(1);
+            }
+            return currentDate;
         }
 
         /// <summary>
@@ -34,7 +75,7 @@ namespace DateLibrary.DateHelpers
         /// </summary>
         /// <param name="country"></param>
         /// <returns></returns>
-        public  IList<DateTime> GetHolidaysDates(Countries country, DateTime dateCourante)
+        public IList<DateTime> GetHolidaysDates(Countries country, DateTime dateCourante)
         {
             var anneeCourante = dateCourante.Year;
             switch (country)
